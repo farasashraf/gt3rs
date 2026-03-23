@@ -423,3 +423,160 @@ canvas {
     flex-direction: column;
   }
 }
+
+/* Agent Manager Styles */
+.hidden {
+    display: none !important;
+}
+
+#agent-manager {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    padding: 100px 50px 50px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+#agent-manager.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.am-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.am-header h2 {
+    font-family: var(--font-accent);
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+
+.highlight-link {
+    color: #00f3ff !important;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.am-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 40px;
+    height: calc(100% - 120px);
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.am-stats-card {
+    margin-bottom: 25px;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    margin: 15px 0;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00ff00;
+    box-shadow: 0 0 10px #00ff00;
+    display: inline-block;
+}
+
+.am-agent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.agent-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.agent-item:hover, .agent-item.active {
+    background: rgba(0, 243, 255, 0.1);
+    border-color: #00f3ff;
+}
+
+.agent-icon {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.agent-item.active .agent-icon {
+    background: #00f3ff;
+    color: #000;
+}
+
+.am-main {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+#am-canvas-container {
+    flex-grow: 1;
+    background: radial-gradient(circle at center, rgba(0, 243, 255, 0.05) 0%, transparent 70%);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.am-activity {
+    height: 200px;
+    overflow-y: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+}
+
+.log-entry {
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}

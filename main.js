@@ -3,6 +3,138 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+import * as THREE from 'three';
+
+class AgentManager {
+  constructor(mainApp) {
+    this.mainApp = mainApp;
+    this.container = document.querySelector('#agent-manager');
+    this.navBtn = document.querySelector('#nav-agents');
+    this.closeBtn = document.querySelector('#close-am');
+    this.isVisible = false;
+    
+    this.setupVisuals();
+    this.bindEvents();
+  }
+
+  setupVisuals() {
+    this.canvasContainer = document.querySelector('#am-canvas-container');
+    if (!this.canvasContainer) return;
+
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(45, this.canvasContainer.clientWidth / this.canvasContainer.clientHeight, 0.1, 1000);
+    this.camera.position.z = 10;
+
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer.setSize(this.canvasContainer.clientWidth, this.canvasContainer.clientHeight);
+    this.canvasContainer.appendChild(this.renderer.domElement);
+
+    // Neural hub particles
+    const geometry = new THREE.BufferGeometry();
+    const count = 500;
+    const positions = new Float32Array(count * 3);
+    for(let i = 0; i < count * 3; i++) {
+      positions[i] = (Math.random() - 0.5) * 15;
+    }
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    
+    const material = new THREE.PointsMaterial({
+      color: 0x00f3ff,
+      size: 0.05,
+      transparent: true,
+      opacity: 0.5
+    });
+    
+    this.points = new THREE.Points(geometry, material);
+    this.scene.add(this.points);
+
+    // Central Core
+    const coreGeom = new THREE.IcosahedronGeometry(1.5, 1);
+    const coreMat = new THREE.MeshPhongMaterial({
+        color: 0x00f3ff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.3
+    });
+    this.core = new THREE.Mesh(coreGeom, coreMat);
+    this.scene.add(this.core);
+
+    const light = new THREE.PointLight(0x00f3ff, 2, 20);
+    this.scene.add(light);
+
+    this.animate();
+  }
+
+  bindEvents() {
+    if (!this.navBtn) return;
+
+    this.navBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.toggle(true);
+    });
+
+    if (this.closeBtn) {
+        this.closeBtn.addEventListener('click', () => {
+            this.toggle(false);
+        });
+    }
+
+    window.addEventListener('resize', () => {
+        if (this.isVisible && this.canvasContainer) {
+            this.camera.aspect = this.canvasContainer.clientWidth / this.canvasContainer.clientHeight;
+            this.camera.updateProjectionMatrix();
+            this.renderer.setSize(this.canvasContainer.clientWidth, this.canvasContainer.clientHeight);
+        }
+    });
+
+    // Agent items click
+    document.querySelectorAll('.agent-item').forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelectorAll('.agent-item').forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            this.addLog(`> Connecting to ${item.querySelector('h4').textContent}...`);
+            this.addLog(`> Handshake established. Access level: FULL.`);
+        });
+    });
+  }
+
+  toggle(show) {
+    this.isVisible = show;
+    if (show) {
+        this.container.classList.remove('hidden');
+        setTimeout(() => this.container.classList.add('active'), 10);
+        document.body.style.overflow = 'hidden';
+        this.addLog(`> System accessed at ${new Date().toLocaleTimeString()}`);
+    } else {
+        this.container.classList.remove('active');
+        setTimeout(() => this.container.classList.add('hidden'), 500);
+        document.body.style.overflow = 'auto';
+    }
+  }
+
+  addLog(msg) {
+    const logs = document.querySelector('#log-entries');
+    if (!logs) return;
+    const entry = document.createElement('div');
+    entry.className = 'log-entry';
+    entry.textContent = msg;
+    logs.appendChild(entry);
+    logs.scrollTop = logs.scrollHeight;
+  }
+
+  animate() {
+    requestAnimationFrame(this.animate.bind(this));
+    if (this.points) this.points.rotation.y += 0.001;
+    if (this.core) {
+        this.core.rotation.y += 0.005;
+        this.core.rotation.x += 0.002;
+    }
+    if (this.renderer && this.scene && this.camera) {
+        this.renderer.render(this.scene, this.camera);
+    }
+  }
+}
+
 class PorscheImageSequence {
   constructor() {
     this.canvas = document.querySelector('#hero-canvas');
@@ -24,6 +156,10 @@ class PorscheImageSequence {
     this.setupTextAnimations();
     this.setupCursor();
     this.bindEvents();
+    
+    // Initialize Agent Manager
+    this.agentManager = new AgentManager(this);
+    
     this.render();
   }
 

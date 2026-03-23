@@ -22,8 +22,66 @@
                 <a href="#">MODELS</a>
                 <a href="#">DNA</a>
                 <a href="#">FUTURE</a>
+                <a href="#" id="nav-agents" class="highlight-link">AGENTS</a>
             </nav>
         </header>
+
+        <section id="agent-manager" class="hidden">
+            <div class="am-header">
+                <h2>AGENT <span class="highlight">MANAGER</span></h2>
+                <button id="close-am" class="btn-close">&times;</button>
+            </div>
+            
+            <div class="am-container">
+                <div class="am-sidebar">
+                    <div class="am-stats-card glass">
+                        <h3>NETWORK STATUS</h3>
+                        <div class="status-indicator online">
+                            <span class="dot"></span> ACTIVE
+                        </div>
+                        <p>3 Agents Synced</p>
+                    </div>
+
+                    <div class="am-agent-list">
+                        <div class="agent-item glass active" data-agent="camerin">
+                            <div class="agent-icon">CA</div>
+                            <div class="agent-info">
+                                <h4>CAMERIN AGENT</h4>
+                                <span class="status">IDLE</span>
+                            </div>
+                        </div>
+                        <div class="agent-item glass" data-agent="shard">
+                            <div class="agent-icon">SA</div>
+                            <div class="agent-info">
+                                <h4>SHARD ARCHITECT</h4>
+                                <span class="status">OPTIMIZING</span>
+                            </div>
+                        </div>
+                        <div class="agent-item glass" data-agent="neural">
+                            <div class="agent-icon">NS</div>
+                            <div class="agent-info">
+                                <h4>NEURAL SCOUT</h4>
+                                <span class="status">SCANNING</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="am-main">
+                    <div id="am-canvas-container">
+                        <!-- Three.js will inject a dedicated visualization here -->
+                    </div>
+                    
+                    <div class="am-activity glass">
+                        <h3>SYSTEM ACTIVITY</h3>
+                        <div class="log-entries" id="log-entries">
+                            <div class="log-entry">> Initializing secure connection...</div>
+                            <div class="log-entry">> Camerin Agent ready for commands.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Main Scroll Content -->
         <main class="main-content">
