@@ -181,7 +181,7 @@ class PorscheImageSequence {
         const img = new Image();
         // Construct path: public/images/herosection/ezgif-frame-XXX.jpg
         const frameIndex = i.toString().padStart(3, '0');
-        img.src = `./public/images/herosection/ezgif-frame-${frameIndex}.jpg`;
+        img.src = `/images/herosection/ezgif-frame-${frameIndex}.jpg`;
         
         const promise = new Promise((resolve) => {
             img.onload = () => resolve(img);
