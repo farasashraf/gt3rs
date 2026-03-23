@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porsche | DNA of Performance</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Sticky Canvas Container -->
+        <div class="canvas-container">
+            <canvas id="hero-canvas"></canvas>
+        </div>
+
+        <header class="header">
+            <div class="logo">PORSCHE</div>
+            <nav class="nav">
+                <a href="#">MODELS</a>
+                <a href="#">DNA</a>
+                <a href="#">FUTURE</a>
+            </nav>
+        </header>
+
+        <!-- Main Scroll Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="scroll-section hero-section">
+                <div class="content">
+                    <h1 class="title">TIMELESS <span class="highlight">DESIGN</span></h1>
+                    <p class="subtitle">Where precision meets pure emotion.</p>
+                </div>
+            </section>
+
+            <!-- Feature 1: Performance -->
+            <section class="scroll-section">
+                <div class="content align-right">
+                    <h2 class="section-title">ENGINEERED FOR <span class="highlight">POWER</span></h2>
+                    <p class="subtitle">A legacy of winning, redefined for the electric age.</p>
+                </div>
+            </section>
+
+            <!-- Feature 2: Interior/Craft -->
+            <section class="scroll-section">
+                <div class="content">
+                    <h2 class="section-title">CRAFTED WITH <span class="highlight">PASSION</span></h2>
+                    <p class="subtitle">Every stitch, every curve, a testament to perfection.</p>
+                </div>
+            </section>
+
+            <!-- Feature 3: Future -->
+            <section class="scroll-section hero-section">
+                <div class="content center">
+                    <h2 class="section-title">THE FUTURE OF <span class="highlight">HERITAGE</span></h2>
+                    <p class="subtitle">Experience the next chapter of the Porsche DNA.</p>
+                </div>
+            </section>
+
+            <!-- Collections Section -->
+            <section class="collections-section" id="collections">
+                <div class="section-header">
+                    <h2 class="section-label">01 // COLLECTIONS</h2>
+                    <h3 class="display-title">CURATED <span class="highlight">EXCELLENCE</span></h3>
+                </div>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <div class="image-wrapper">
+                            <img src="./public/images/collections/macan.png" alt="Porsche Macan">
+                        </div>
+                        <div class="item-info">
+                            <h4>PURPOSE</h4>
+                            <p>Macan EV</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="image-wrapper">
+                            <img src="./public/images/collections/taycan.png" alt="Porsche Taycan">
+                        </div>
+                        <div class="item-info">
+                            <h4>ELECTRIFIED</h4>
+                            <p>Taycan Turbo S</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="image-wrapper">
+                            <img src="./public/images/collections/gt3rs.png" alt="Porsche GT3 RS">
+                        </div>
+                        <div class="item-info">
+                            <h4>RACING</h4>
+                            <p>911 GT3 RS</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about-section" id="about">
+                <div class="about-container">
+                    <div class="about-content">
+                        <h2 class="section-label">02 // ABOUT</h2>
+                        <h3 class="display-title">BORN IN <span class="highlight">STUTTGART</span></h3>
+                        <p class="about-text">
+                            Since 1948, Porsche has been synonymous with sports car construction at the highest level. We don't just build cars; we build dreams. Our journey is one of constant evolution, from the legendary 356 to the groundbreaking Taycan, always staying true to our DNA of performance and precision.
+                        </p>
+                        <div class="cta-group">
+                            <button class="btn btn-primary">OUR HERITAGE</button>
+                            <button class="btn btn-secondary">VISION 2030</button>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="visual-card">
+                            <span class="year">1948</span>
+                            <span class="desc">THE FIRST PORSCHE</span>
+                        </div>
+                        <div class="visual-card highlight-card">
+                            <span class="year">2024</span>
+                            <span class="desc">THE SUSTAINABLE FUTURE</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>SCROLL TO EXPLORE</span>
+        </div>
+
+        <div class="cursor"></div>
+    </div>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
