@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 import * as THREE from 'three';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 
 class AgentManager {
   constructor(mainApp) {
@@ -370,3 +371,6 @@ class PorscheImageSequence {
 window.addEventListener('DOMContentLoaded', () => {
     new PorscheImageSequence();
 });
+
+// Initialize Vercel Speed Insights
+injectSpeedInsights();
